@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Education360 - Login</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #3a7bd5, #00d2ff);
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      font-size: 1.6rem;
+      color: #ffc107 !important;
+    }
+
+    .navbar-nav .nav-link {
+      font-weight: 500;
+      color: #fff !important;
+    }
+
+    .main {
+      display: flex;
+      height: 100vh;
+      width: 100%;
+    }
+
+    .left-side {
+      flex: 1;
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px;
+    }
+
+    .left-side::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .left-side .content {
+      position: relative;
+      z-index: 2;
+      color: white;
+    }
+
+    .left-side h1 {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+
+    .left-side p {
+      font-size: 1.2rem;
+      margin-top: 15px;
+    }
+
+    .right-side {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+    }
+
+    .form-box {
+      background: rgba(255, 255, 255, 0.25);
+      padding: 40px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 400px;
+      color: #fff;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .form-box h3 {
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+    }
+
+    .form-control::placeholder {
+      color: #ccc;
+    }
+
+    .form-control:focus {
+      box-shadow: none;
+      border-color: #fff;
+    }
+
+    .toggle-link {
+      color: #ffc107;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .main {
+        flex-direction: column;
+      }
+
+      .left-side {
+        height: 40%;
+        padding: 30px;
+        text-align: center;
+      }
+
+      .right-side {
+        height: 60%;
+      }
+    }
+
+    .footer {
+      background-color: #212529;
+      color: #bbb;
+      padding: 30px 0;
+    }
+
+    .footer a {
+      color: #bbb;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #fff;
+    }
+
+       /* Dark Mode Styles */
+    body.dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .navbar {
+      background-color: #1c1c1c !important;
+    }
+
+    body.dark-mode .footer {
+      background-color: #1c1c1c;
+    }
+
+    body.dark-mode .card {
+      background-color: #1e1e1e;
+      color: #f1f1f1;
+    }
+
+    body.dark-mode .btn-primary {
+      background-color: #ffc107;
+      color: #000;
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: #fff;
+    }
+
+    .theme-toggle:hover {
+      color: #ffc107;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+    <div class="container">
+      <a class="navbar-brand" href="#">Education360</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="./books.html">Books</a></li>
+          <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="./login.html">Login</a></li>
+          <li class="nav-item ms-3">
+            <!-- Dark Mode Icon Button -->
+            <i class="fas fa-moon theme-toggle" id="darkToggle"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main">
+    <!-- Left -->
+    <div class="left-side">
+      <div class="content">
+        <h1>Welcome to Education360</h1>
+        <p>Access thousands of books online, anytime, anywhere.</p>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="right-side">
+      <div class="form-box">
+        <!-- Login Form -->
+        <div id="login-form">
+          <h3><i class="fas fa-sign-in-alt"></i> Login</h3>
+          <form action="/login" method="POST">
+            <div class="mb-3">
+              <label>Email</label>
+              <input type="email" name="email" class="form-control" placeholder="Enter your email" required />
+            </div>
+            <div class="mb-3">
+              <label>Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Enter password" required />
+            </div>
+            <button type="submit" class="btn btn-warning w-100">Login</button>
+          </form>
+          <p class="text-center mt-3">Don't have an account?
+            <span class="toggle-link" onclick="toggleForm()">Register here</span>
+          </p>
+        </div>
+
+        <!-- Register Form -->
+        <div id="register-form" style="display: none;">
+          <h3><i class="fas fa-user-plus"></i> Register</h3>
+          <form action="/register" method="POST">
+            <div class="mb-3">
+              <label>Full Name</label>
+              <input type="text" name="name" class="form-control" placeholder="Your name" required />
+            </div>
+            <div class="mb-3">
+              <label>Email</label>
+              <input type="email" name="email" class="form-control" placeholder="Your email" required />
+            </div>
+            <div class="mb-3">
+              <label>Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Choose password" required />
+            </div>
+            <button type="submit" class="btn btn-success w-100">Register</button>
+          </form>
+          <p class="text-center mt-3">Already have an account?
+            <span class="toggle-link" onclick="toggleForm()">Login here</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <div class="container">
+      <p>&copy; 2025 Education360. All rights reserved.</p>
+      <p>
+        <a href="#">Privacy Policy</a> | <a href="#">Terms</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Dark Mode Toggle Script -->
+  <script>
+    const toggleBtn = document.getElementById('darkToggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      toggleBtn.classList.toggle('fa-moon');
+      toggleBtn.classList.toggle('fa-sun');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Education360</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- FontAwesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      font-size: 1.6rem;
+      color: #ffc107 !important;
+    }
+
+    .navbar-nav .nav-link {
+      font-weight: 500;
+      color: #fff !important;
+    }
+
+    .hero {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1603570419887-773b181f19b0?auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero .overlay h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #ffc107;
+    }
+
+    .hero .overlay p {
+      font-size: 1.25rem;
+      margin-bottom: 30px;
+      color: #eee;
+    }
+
+    .btn-primary {
+      background-color: #ffc107;
+      border: none;
+      color: #000;
+      font-weight: 600;
+    }
+
+    .btn-outline-light {
+      font-weight: 600;
+    }
+
+    .features i {
+      font-size: 2.8rem;
+      color: #0d6efd;
+      margin-bottom: 15px;
+    }
+
+    .features h5 {
+      font-weight: 600;
+    }
+
+    .book-card img {
+      height: 240px;
+      object-fit: cover;
+      border-radius: 6px 6px 0 0;
+    }
+
+    .card-title {
+      font-weight: 600;
+    }
+
+    .footer {
+      background-color: #212529;
+      color: #bbb;
+      padding: 30px 0;
+    }
+
+    .footer a {
+      color: #bbb;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #fff;
+    }
+
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .navbar {
+      background-color: #1c1c1c !important;
+    }
+
+    body.dark-mode .footer {
+      background-color: #1c1c1c;
+    }
+
+    body.dark-mode .card {
+      background-color: #1e1e1e;
+      color: #f1f1f1;
+    }
+
+    body.dark-mode .btn-primary {
+      background-color: #ffc107;
+      color: #000;
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: #fff;
+    }
+
+    .theme-toggle:hover {
+      color: #ffc107;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+    <div class="container">
+      <a class="navbar-brand" href="#">Education360</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="./books.html">Books</a></li>
+          <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="./login.html">Login</a></li>
+          <li class="nav-item ms-3">
+            <!-- Dark Mode Icon Button -->
+            <i class="fas fa-moon theme-toggle" id="darkToggle"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay">
+      <div class="container text-center">
+        <h1>Welcome to Education360</h1>
+        <p>Read Anytime, Anywhere – Digital Learning Made Easy</p>
+        <a href="#" class="btn btn-primary btn-lg me-3">Explore Library</a>
+        <a href="./login.html" class="btn btn-outline-light btn-lg">Register Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features py-5 text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <i class="fas fa-book-open"></i>
+          <h5 class="mt-2">Thousands of Books</h5>
+        </div>
+        <div class="col-md-3">
+          <i class="fas fa-download"></i>
+          <h5 class="mt-2">Easy Download</h5>
+        </div>
+        <div class="col-md-3">
+          <i class="fas fa-user-shield"></i>
+          <h5 class="mt-2">Secure Access</h5>
+        </div>
+        <div class="col-md-3">
+          <i class="fas fa-mobile-alt"></i>
+          <h5 class="mt-2">Mobile Friendly</h5>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Books -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Popular Books</h2>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <div class="card book-card">
+            <img src="https://covers.openlibrary.org/b/id/10594775-L.jpg" class="card-img-top" alt="Book 1">
+            <div class="card-body">
+              <h5 class="card-title">The Alchemist</h5>
+              <p class="card-text">By Paulo Coelho</p>
+              <a href="#" class="btn btn-primary btn-sm">Read Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card book-card">
+            <img src="https://covers.openlibrary.org/b/id/11120007-L.jpg" class="card-img-top" alt="Book 2">
+            <div class="card-body">
+              <h5 class="card-title">Rich Dad Poor Dad</h5>
+              <p class="card-text">By Robert T. Kiyosaki</p>
+              <a href="#" class="btn btn-primary btn-sm">Read Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card book-card">
+            <img src="https://covers.openlibrary.org/b/id/10314564-L.jpg" class="card-img-top" alt="Book 3">
+            <div class="card-body">
+              <h5 class="card-title">Think and Grow Rich</h5>
+              <p class="card-text">By Napoleon Hill</p>
+              <a href="#" class="btn btn-primary btn-sm">Read Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h3>About Education360</h3>
+          <p>
+            Education360 is an initiative to make learning materials accessible to every student digitally. We aim to provide thousands of free books across all disciplines with a user-friendly and modern interface.
+          </p>
+        </div>
+        <div class="col-md-6">
+          <img src="https://img.freepik.com/free-vector/online-library-concept_23-2148609321.jpg" alt="About" class="img-fluid rounded">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <div class="container">
+      <p>&copy; 2025 Education360. All rights reserved.</p>
+      <p>
+        <a href="#">Privacy Policy</a> | <a href="#">Terms</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Dark Mode Toggle Script -->
+  <script>
+    const toggleBtn = document.getElementById('darkToggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      toggleBtn.classList.toggle('fa-moon');
+      toggleBtn.classList.toggle('fa-sun');
+    });
+  </script>
+</body>
+</html>
