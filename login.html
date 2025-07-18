@@ -27,6 +27,12 @@
       background: linear-gradient(to right, #3a7bd5, #00d2ff);
     }
 
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
     .navbar-brand {
       font-weight: 600;
       font-size: 1.6rem;
@@ -156,7 +162,7 @@
       color: #fff;
     }
 
-       /* Dark Mode Styles */
+    /* Dark Mode Styles */
     body.dark-mode {
       background-color: #121212;
       color: #e0e0e0;
@@ -170,7 +176,8 @@
       background-color: #1c1c1c;
     }
 
-    body.dark-mode .card {
+    body.dark-mode .card,
+    body.dark-mode .form-box {
       background-color: #1e1e1e;
       color: #f1f1f1;
     }
@@ -207,7 +214,6 @@
           <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="./login.html">Login</a></li>
           <li class="nav-item ms-3">
-            <!-- Dark Mode Icon Button -->
             <i class="fas fa-moon theme-toggle" id="darkToggle"></i>
           </li>
         </ul>
@@ -294,6 +300,22 @@
       toggleBtn.classList.toggle('fa-moon');
       toggleBtn.classList.toggle('fa-sun');
     });
+  </script>
+
+  <!-- Form Toggle Script -->
+  <script>
+    function toggleForm() {
+      const loginForm = document.getElementById("login-form");
+      const registerForm = document.getElementById("register-form");
+
+      if (loginForm.style.display === "none") {
+        loginForm.style.display = "block";
+        registerForm.style.display = "none";
+      } else {
+        loginForm.style.display = "none";
+        registerForm.style.display = "block";
+      }
+    }
   </script>
 
 </body>
