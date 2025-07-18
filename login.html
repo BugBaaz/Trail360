@@ -15,6 +15,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
   <style>
+    /* Your existing CSS (no changes needed) */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -131,6 +132,12 @@
       text-decoration: underline;
     }
 
+    .alert {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 14px;
+    }
+
     @media (max-width: 768px) {
       .main {
         flex-direction: column;
@@ -162,7 +169,6 @@
       color: #fff;
     }
 
-    /* Dark Mode Styles */
     body.dark-mode {
       background-color: #121212;
       color: #e0e0e0;
@@ -200,123 +206,190 @@
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
-    <div class="container">
-      <a class="navbar-brand" href="#">Education360</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navmenu">
-        <ul class="navbar-nav ms-auto align-items-center">
-          <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="./books.html">Books</a></li>
-          <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="./login.html">Login</a></li>
-          <li class="nav-item ms-3">
-            <i class="fas fa-moon theme-toggle" id="darkToggle"></i>
-          </li>
-        </ul>
-      </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+  <div class="container">
+    <a class="navbar-brand" href="#">Education360</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navmenu">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="./books.html">Books</a></li>
+        <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="./login.html">Login</a></li>
+        <li class="nav-item ms-3">
+          <i class="fas fa-moon theme-toggle" id="darkToggle"></i>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- Main Content -->
-  <div class="main">
-    <!-- Left -->
-    <div class="left-side">
-      <div class="content">
-        <h1>Welcome to Education360</h1>
-        <p>Access thousands of books online, anytime, anywhere.</p>
-      </div>
-    </div>
-
-    <!-- Right -->
-    <div class="right-side">
-      <div class="form-box">
-        <!-- Login Form -->
-        <div id="login-form">
-          <h3><i class="fas fa-sign-in-alt"></i> Login</h3>
-          <form action="/login" method="POST">
-            <div class="mb-3">
-              <label>Email</label>
-              <input type="email" name="email" class="form-control" placeholder="Enter your email" required />
-            </div>
-            <div class="mb-3">
-              <label>Password</label>
-              <input type="password" name="password" class="form-control" placeholder="Enter password" required />
-            </div>
-            <button type="submit" class="btn btn-warning w-100">Login</button>
-          </form>
-          <p class="text-center mt-3">Don't have an account?
-            <span class="toggle-link" onclick="toggleForm()">Register here</span>
-          </p>
-        </div>
-
-        <!-- Register Form -->
-        <div id="register-form" style="display: none;">
-          <h3><i class="fas fa-user-plus"></i> Register</h3>
-          <form action="/register" method="POST">
-            <div class="mb-3">
-              <label>Full Name</label>
-              <input type="text" name="name" class="form-control" placeholder="Your name" required />
-            </div>
-            <div class="mb-3">
-              <label>Email</label>
-              <input type="email" name="email" class="form-control" placeholder="Your email" required />
-            </div>
-            <div class="mb-3">
-              <label>Password</label>
-              <input type="password" name="password" class="form-control" placeholder="Choose password" required />
-            </div>
-            <button type="submit" class="btn btn-success w-100">Register</button>
-          </form>
-          <p class="text-center mt-3">Already have an account?
-            <span class="toggle-link" onclick="toggleForm()">Login here</span>
-          </p>
-        </div>
-      </div>
+<!-- Main Content -->
+<div class="main">
+  <!-- Left -->
+  <div class="left-side">
+    <div class="content">
+      <h1>Welcome to Education360</h1>
+      <p>Access thousands of books online, anytime, anywhere.</p>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="footer text-center">
-    <div class="container">
-      <p>&copy; 2025 Education360. All rights reserved.</p>
-      <p>
-        <a href="#">Privacy Policy</a> | <a href="#">Terms</a>
-      </p>
+  <!-- Right -->
+  <div class="right-side">
+    <div class="form-box">
+      <!-- Login Form -->
+      <div id="login-form">
+        <h3><i class="fas fa-sign-in-alt"></i> Login</h3>
+        <form id="loginForm">
+          <div class="mb-3">
+            <label>Email</label>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required />
+          </div>
+          <div class="mb-3">
+            <label>Password</label>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" required />
+          </div>
+          <button type="submit" class="btn btn-warning w-100">Login</button>
+        </form>
+        <div id="loginMessage" class="alert d-none text-center mt-3"></div>
+        <p class="text-center mt-3">Don't have an account?
+          <span class="toggle-link" onclick="toggleForm()">Register here</span>
+        </p>
+      </div>
+
+      <!-- Register Form -->
+      <div id="register-form" style="display: none;">
+        <h3><i class="fas fa-user-plus"></i> Register</h3>
+        <form id="registerForm">
+          <div class="mb-3">
+            <label>Full Name</label>
+            <input type="text" name="name" class="form-control" placeholder="Your name" required />
+          </div>
+          <div class="mb-3">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" placeholder="Your email" required />
+          </div>
+          <div class="mb-3">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Choose password" required />
+          </div>
+          <button type="submit" class="btn btn-success w-100">Register</button>
+        </form>
+        <p class="text-center mt-3">Already have an account?
+          <span class="toggle-link" onclick="toggleForm()">Login here</span>
+        </p>
+      </div>
     </div>
-  </footer>
+  </div>
+</div>
 
-  <!-- Bootstrap 5 JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Footer -->
+<footer class="footer text-center">
+  <div class="container">
+    <p>&copy; 2025 Education360. All rights reserved.</p>
+    <p><a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
+  </div>
+</footer>
 
-  <!-- Dark Mode Toggle Script -->
-  <script>
-    const toggleBtn = document.getElementById('darkToggle');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      toggleBtn.classList.toggle('fa-moon');
-      toggleBtn.classList.toggle('fa-sun');
-    });
-  </script>
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Form Toggle Script -->
-  <script>
-    function toggleForm() {
-      const loginForm = document.getElementById("login-form");
-      const registerForm = document.getElementById("register-form");
+<!-- Dark Mode Toggle -->
+<script>
+  const toggleBtn = document.getElementById('darkToggle');
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    toggleBtn.classList.toggle('fa-moon');
+    toggleBtn.classList.toggle('fa-sun');
+  });
+</script>
 
-      if (loginForm.style.display === "none") {
-        loginForm.style.display = "block";
-        registerForm.style.display = "none";
+<!-- Form Toggle -->
+<script>
+  function toggleForm() {
+    const loginForm = document.getElementById("login-form");
+    const registerForm = document.getElementById("register-form");
+    loginForm.style.display = loginForm.style.display === "none" ? "block" : "none";
+    registerForm.style.display = registerForm.style.display === "none" ? "block" : "none";
+  }
+</script>
+
+<!-- Login API Integration -->
+<script>
+  const loginForm = document.getElementById('loginForm');
+  const loginMessage = document.getElementById('loginMessage');
+
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        loginMessage.className = "alert alert-success text-center mt-3";
+        loginMessage.textContent = data.message || "Login successful!";
+        localStorage.setItem("token", data.token);
       } else {
-        loginForm.style.display = "none";
-        registerForm.style.display = "block";
+        loginMessage.className = "alert alert-danger text-center mt-3";
+        loginMessage.textContent = data.message || "Invalid credentials!";
       }
+
+      loginMessage.classList.remove("d-none");
+    } catch (err) {
+      loginMessage.className = "alert alert-danger text-center mt-3";
+      loginMessage.textContent = "Something went wrong. Try again.";
+      loginMessage.classList.remove("d-none");
     }
-  </script>
+  });
+</script>
+
+<!-- Register API Integration -->
+<script>
+  const registerForm = document.getElementById('registerForm');
+
+  registerForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = registerForm.querySelector('[name="name"]').value.trim();
+    const email = registerForm.querySelector('[name="email"]').value.trim();
+    const password = registerForm.querySelector('[name="password"]').value.trim();
+
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Registration successful! Please login.");
+        toggleForm(); // switch to login
+        registerForm.reset();
+      } else {
+        alert(data.message || "Registration failed.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong. Try again later.");
+    }
+  });
+</script>
 
 </body>
 </html>
