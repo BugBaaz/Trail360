@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Book</title>
+</head>
+<body>
+  <h2>Upload a Book</h2>
+  <form id="uploadForm" enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="Book Title" required><br><br>
+    <input type="text" name="author" placeholder="Author" required><br><br>
+    <textarea name="description" placeholder="Description"></textarea><br><br>
+    <input type="file" name="bookFile" accept="application/pdf" required><br><br>
+    <button type="submit">Upload</button>
+  </form>
+
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+
+      const res = await fetch('http://localhost:5000/api/books/upload', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await res.json();
+      alert(data.message);
+      console.log(data);
+    });
+  </script>
+</body>
+</html>
