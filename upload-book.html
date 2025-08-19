@@ -1,34 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Upload Book</title>
+    <title>File Upload Test</title>
 </head>
 <body>
-  <h2>Upload a Book</h2>
-  <form id="uploadForm" enctype="multipart/form-data">
-    <input type="text" name="title" placeholder="Book Title" required><br><br>
-    <input type="text" name="author" placeholder="Author" required><br><br>
-    <textarea name="description" placeholder="Description"></textarea><br><br>
-    <input type="file" name="bookFile" accept="application/pdf" required><br><br>
-    <button type="submit">Upload</button>
-  </form>
+    <h2>Upload File</h2>
+    <form id="uploadForm">
+        <input type="file" name="file" id="fileInput" required>
+        <button type="submit">Upload</button>
+    </form>
+    <p id="result"></p>
 
-  <script>
-    document.getElementById('uploadForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
 
-      const res = await fetch('http://localhost:5000/api/books/upload', {
-        method: 'POST',
-        body: formData
-      });
+            const fileInput = document.getElementById('fileInput');
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
 
-      const data = await res.json();
-      alert(data.message);
-      console.log(data);
-    });
-  </script>
+            const res = await fetch('http://localhost:5000/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await res.json();
+            document.getElementById('result').innerText = data.message;
+        });
+    </script>
 </body>
 </html>

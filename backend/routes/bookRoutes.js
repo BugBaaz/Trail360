@@ -1,18 +1,26 @@
 const express = require('express');
+const upload = require('../middlewares/uploadMiddleware'); // ✅ multer config import
 const router = express.Router();
-const { uploadBook, getAllBooks } = require('../controllers/bookController');
-const upload = require('../middlewares/uploadMiddleware');
 
-// ✅ Lowercase file import for model (if used here directly)
-const Book = require('../models/book');
+// 📌 File Upload Route
+router.post('/upload', upload.single('file'), (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ message: 'No file uploaded' });
+        }
 
-// Upload a new book
-router.post('/upload', upload.fields([
-  { name: 'coverImage', maxCount: 1 },
-  { name: 'file', maxCount: 1 }
-]), uploadBook);
-
-// Get all books
-router.get('/', getAllBooks);
+        res.status(200).json({
+            message: 'File uploaded successfully!',
+            file: {
+                filename: req.file.filename,
+                path: `/uploads/${req.file.filename}`,
+                mimetype: req.file.mimetype,
+                size: req.file.size
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Something went wrong', error: error.message });
+    }
+});
 
 module.exports = router;
