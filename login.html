@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Education360 - Login</title>
+  <title>Education360 - Login/Register</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
@@ -13,15 +13,13 @@
 
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="./toast.css">
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body, html {
       height: 100%;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #ad53ee, #06687e); /* Updated color */
+      background: linear-gradient(to right, #ad53ee, #06687e);
       transition: background 0.5s ease, color 0.3s ease;
     }
 
@@ -30,24 +28,10 @@
       top: 0;
       z-index: 999;
     }
+    .navbar-brand { font-weight: 600; font-size: 1.6rem; color: #ffc107 !important; }
+    .navbar-nav .nav-link { font-weight: 500; color: #fff !important; }
 
-    .navbar-brand {
-      font-weight: 600;
-      font-size: 1.6rem;
-      color: #ffc107 !important;
-    }
-
-    .navbar-nav .nav-link {
-      font-weight: 500;
-      color: #fff !important;
-    }
-
-    .main {
-      display: flex;
-      height: 100vh;
-      width: 100%;
-    }
-
+    .main { display: flex; height: 100vh; width: 100%; }
     .left-side {
       flex: 1;
       position: relative;
@@ -58,7 +42,6 @@
       padding: 60px;
       transition: background 0.5s ease;
     }
-
     .left-side::before {
       content: "";
       position: absolute;
@@ -67,9 +50,7 @@
       z-index: 1;
       transition: background 0.5s ease;
     }
-
     .left-side .content { position: relative; z-index: 2; color: white; }
-
     .left-side h1 { font-size: 3rem; font-weight: 600; }
     .left-side p { font-size: 1.2rem; margin-top: 15px; }
 
@@ -118,12 +99,8 @@
     .footer a { color: #bbb; text-decoration: none; }
     .footer a:hover { color: #fff; }
 
-    /* ===== Dark Mode Styling ===== */
-    body.dark-mode {
-      background: #121212 !important;
-      color: #e0e0e0;
-    }
-
+    /* Dark Mode */
+    body.dark-mode { background: #121212 !important; color: #e0e0e0; }
     body.dark-mode .navbar { background-color: #1c1c1c !important; }
     body.dark-mode .footer { background-color: #1c1c1c; }
     body.dark-mode .form-box { background-color: #1e1e1e; color: #f1f1f1; }
@@ -173,11 +150,11 @@
         <form id="loginForm">
           <div class="mb-3">
             <label>Email</label>
-            <input type="email" id="email" class="form-control" placeholder="Enter your email" required />
+            <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required />
           </div>
           <div class="mb-3">
             <label>Password</label>
-            <input type="password" id="password" class="form-control" placeholder="Enter password" required />
+            <input type="password" id="loginPassword" class="form-control" placeholder="Enter password" required />
           </div>
           <button type="submit" class="btn btn-warning w-100">Login</button>
           <div class="text-center mt-2">
@@ -188,8 +165,6 @@
           <span class="toggle-link" onclick="toggleForm()">Register here</span>
         </p>
       </div>
-
-       <div id="toast-container"></div>
 
       <!-- Register -->
       <div id="register-form" style="display: none;">
@@ -204,12 +179,31 @@
           <div class="mb-3"><label>Password</label>
             <input type="password" id="password" name="password" class="form-control" placeholder="Set a password" required />
           </div>
+          <div class="mb-3">
+            <label>Role</label>
+            <select id="role" name="role" class="form-control">
+              <option value="student" selected>Student</option>
+              <option value="teacher">Teacher</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Department</label>
+            <select id="department" name="department" class="form-control">
+              <option value="cse" selected>CSE</option>
+              <option value="ece">ECE</option>
+              <option value="mech">MECH</option>
+              <option value="civil">CIVIL</option>
+              <option value="ee">EE</option>
+            </select>
+          </div>
           <button type="submit" class="btn btn-success w-100">Register</button>
         </form>
         <p class="text-center mt-3">Already have an account?
           <span class="toggle-link" onclick="toggleForm()">Login here</span>
         </p>
       </div>
+
     </div>
   </div>
 </div>
@@ -243,36 +237,24 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="./toast.js"></script>
-<script src="./env.js"></script>
-<script src="./login.js"></script>
 
-<!-- Dark Mode Script -->
+<!-- Dark Mode -->
 <script>
 const toggleBtn = document.getElementById('darkToggle');
-
-// Load previous theme
 if (localStorage.getItem('theme') === 'dark') {
   document.body.classList.add('dark-mode');
   toggleBtn.classList.remove('fa-moon');
   toggleBtn.classList.add('fa-sun');
 }
-
 toggleBtn.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
   toggleBtn.classList.toggle('fa-moon');
   toggleBtn.classList.toggle('fa-sun');
-  
-  if (document.body.classList.contains('dark-mode')) {
-    localStorage.setItem('theme', 'dark');
-  } else {
-    localStorage.setItem('theme', 'light');
-  }
+  localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
 });
 </script>
 
-<!-- Toggle Form -->
+<!-- Toggle Forms -->
 <script>
 function toggleForm() {
   const loginForm = document.getElementById("login-form");
@@ -281,16 +263,30 @@ function toggleForm() {
   registerForm.style.display = registerForm.style.display === "none" ? "block" : "none";
 }
 
+// Demo submit actions
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const role = document.getElementById('role').value;
+  const department = document.getElementById('department').value;
+  console.log({ name, email, password, role, department });
+  alert(`Registered as ${role.toUpperCase()} in ${department.toUpperCase()}`);
+});
 
-
-// document.getElementById('registerForm').addEventListener('submit', function(e) {
-//   e.preventDefault();
-//   alert("Registration functionality is disabled (Frontend only)");
-// });
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+  console.log({ email, password });
+  alert(`Logged in as ${email}`);
+});
 
 document.getElementById('forgotForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  alert("Password reset functionality is disabled (Frontend only)");
+  const email = document.getElementById('forgotEmail').value;
+  alert(`Password reset link sent to ${email}`);
 });
 </script>
 

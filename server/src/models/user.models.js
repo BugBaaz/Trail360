@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema(
     },
     department: {
       type: String,
-      enum: ["cse", "ece", "mech", "civil", "chem", "bio"],
+      enum: ["cse", "ece", "mech", "civil", "ee"],
       default: "cse",
     },
     uploadHistory: [
