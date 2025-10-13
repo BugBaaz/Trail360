@@ -26,6 +26,8 @@ const userControllers = {
   }),
   login: asyncHandler(async (req, res) => {
     const { email, password } = req.body;
+    
+    
 
     if (!email || !password) {
       throw new ApiError(400, "Email and password are required");
@@ -37,7 +39,8 @@ const userControllers = {
     }
     const options = {
       httpOnly: true,
-      secure: true, // for https
+      secure: true,
+      
     };
 
     const token = user.generateAccessToken();
