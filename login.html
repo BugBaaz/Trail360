@@ -262,32 +262,6 @@ function toggleForm() {
   loginForm.style.display = loginForm.style.display === "none" ? "block" : "none";
   registerForm.style.display = registerForm.style.display === "none" ? "block" : "none";
 }
-
-// Demo submit actions
-document.getElementById('registerForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  const role = document.getElementById('role').value;
-  const department = document.getElementById('department').value;
-  console.log({ name, email, password, role, department });
-  alert(`Registered as ${role.toUpperCase()} in ${department.toUpperCase()}`);
-});
-
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const email = document.getElementById('loginEmail').value;
-  const password = document.getElementById('loginPassword').value;
-  console.log({ email, password });
-  alert(`Logged in as ${email}`);
-});
-
-document.getElementById('forgotForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const email = document.getElementById('forgotEmail').value;
-  alert(`Password reset link sent to ${email}`);
-});
 </script>
 
 </body>
