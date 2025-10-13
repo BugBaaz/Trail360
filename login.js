@@ -17,7 +17,7 @@ document
       //   const data = await res.json()
 
       if (res.data.statusCode === 200) {
-        console.log(res.data);
+        localStorage.setItem("user",res.data)
         showToast("Login successful!", true);
         window.location.href = "./index.html";
       }

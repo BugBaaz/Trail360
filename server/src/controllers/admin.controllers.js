@@ -4,8 +4,38 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { Book } from "../models/book.models.js";
 import { get } from "mongoose";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 export const adminControllers = {
+  addBook : asyncHandler(async (req, res) => {
+    const { title, author, publishedDate, genre, summary } = req.body;
+    const thumbnail = req.files?.thumbnail?.[0]?.path || null;
+    const book = req.files?.book?.[0]?.path || null;
+
+    if (!title || !author || !publishedDate || !genre || !summary || !thumbnail || !book) {
+      throw new ApiError(400, "All fields are required");
+    }
+
+    const bookUrl = await uploadOnCloudinary(book)
+    const thumbnailUrl = await uploadOnCloudinary(thumbnail)
+    if (!bookUrl || !thumbnailUrl) {
+      throw new ApiError(500, "Failed to upload files");
+    }
+    const newBook = new Book({
+      title,
+      author,
+      publishedDate,
+      genre,
+      summary,
+      thumbnail: thumbnailUrl,
+      book: bookUrl,
+    });
+    await newBook.save();
+
+    return res
+      .status(201)
+      .json(new ApiResponse(201, newBook, "Book added successfully"));
+  }),
   getAdminDashboard: asyncHandler(async (req, res) => {
     // frontend se query params la lo (default: page=1, limit=10)
     const page = parseInt(req.query.page) || 1;
