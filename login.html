@@ -15,7 +15,6 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
   <style>
-    /* Your existing CSS (no changes needed) */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -121,11 +120,6 @@
       color: #ccc;
     }
 
-    .form-control:focus {
-      box-shadow: none;
-      border-color: #fff;
-    }
-
     .toggle-link {
       color: #ffc107;
       cursor: pointer;
@@ -142,13 +136,11 @@
       .main {
         flex-direction: column;
       }
-
       .left-side {
         height: 40%;
         padding: 30px;
         text-align: center;
       }
-
       .right-side {
         height: 60%;
       }
@@ -188,11 +180,6 @@
       color: #f1f1f1;
     }
 
-    body.dark-mode .btn-primary {
-      background-color: #ffc107;
-      color: #000;
-    }
-
     .theme-toggle {
       cursor: pointer;
       font-size: 1.3rem;
@@ -219,17 +206,14 @@
         <li class="nav-item"><a class="nav-link" href="./books.html">Books</a></li>
         <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
         <li class="nav-item"><a class="nav-link" href="./login.html">Login</a></li>
-        <li class="nav-item ms-3">
-          <i class="fas fa-moon theme-toggle" id="darkToggle"></i>
-        </li>
+        <li class="nav-item ms-3"><i class="fas fa-moon theme-toggle" id="darkToggle"></i></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- Main Content -->
+<!-- Main -->
 <div class="main">
-  <!-- Left -->
   <div class="left-side">
     <div class="content">
       <h1>Welcome to Education360</h1>
@@ -237,22 +221,24 @@
     </div>
   </div>
 
-  <!-- Right -->
   <div class="right-side">
     <div class="form-box">
-      <!-- Login Form -->
+      <!-- Login -->
       <div id="login-form">
         <h3><i class="fas fa-sign-in-alt"></i> Login</h3>
         <form id="loginForm">
           <div class="mb-3">
             <label>Email</label>
-            <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required />
+            <input type="email" id="email" class="form-control" placeholder="Enter your email" required />
           </div>
           <div class="mb-3">
             <label>Password</label>
-            <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" required />
+            <input type="password" id="password" class="form-control" placeholder="Enter password" required />
           </div>
           <button type="submit" class="btn btn-warning w-100">Login</button>
+          <div class="text-center mt-2">
+            <a href="#" class="toggle-link" data-bs-toggle="modal" data-bs-target="#forgotModal">Forgot Password?</a>
+          </div>
         </form>
         <div id="loginMessage" class="alert d-none text-center mt-3"></div>
         <p class="text-center mt-3">Don't have an account?
@@ -260,20 +246,17 @@
         </p>
       </div>
 
-      <!-- Register Form -->
+      <!-- Register -->
       <div id="register-form" style="display: none;">
         <h3><i class="fas fa-user-plus"></i> Register</h3>
         <form id="registerForm">
-          <div class="mb-3">
-            <label>Full Name</label>
+          <div class="mb-3"><label>Full Name</label>
             <input type="text" name="name" class="form-control" placeholder="Your name" required />
           </div>
-          <div class="mb-3">
-            <label>Email</label>
+          <div class="mb-3"><label>Email</label>
             <input type="email" name="email" class="form-control" placeholder="Your email" required />
           </div>
-          <div class="mb-3">
-            <label>Password</label>
+          <div class="mb-3"><label>Password</label>
             <input type="password" name="password" class="form-control" placeholder="Choose password" required />
           </div>
           <button type="submit" class="btn btn-success w-100">Register</button>
@@ -281,6 +264,26 @@
         <p class="text-center mt-3">Already have an account?
           <span class="toggle-link" onclick="toggleForm()">Login here</span>
         </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div class="modal fade" id="forgotModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header border-0">
+        <h5 class="modal-title"><i class="fas fa-key"></i> Reset Password</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="forgotForm">
+          <label>Enter your registered email:</label>
+          <input type="email" id="forgotEmail" class="form-control mb-3" placeholder="Email address" required>
+          <button type="submit" class="btn btn-warning w-100">Send Reset Link</button>
+        </form>
+        <div id="forgotMessage" class="alert d-none text-center mt-3"></div>
       </div>
     </div>
   </div>
@@ -294,101 +297,132 @@
   </div>
 </footer>
 
-<!-- Bootstrap 5 JS -->
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Dark Mode Toggle -->
+<!-- Dark Mode -->
 <script>
-  const toggleBtn = document.getElementById('darkToggle');
-  toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    toggleBtn.classList.toggle('fa-moon');
-    toggleBtn.classList.toggle('fa-sun');
-  });
+const toggleBtn = document.getElementById('darkToggle');
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  toggleBtn.classList.toggle('fa-moon');
+  toggleBtn.classList.toggle('fa-sun');
+});
 </script>
 
-<!-- Form Toggle -->
+<!-- Toggle Form -->
 <script>
-  function toggleForm() {
-    const loginForm = document.getElementById("login-form");
-    const registerForm = document.getElementById("register-form");
-    loginForm.style.display = loginForm.style.display === "none" ? "block" : "none";
-    registerForm.style.display = registerForm.style.display === "none" ? "block" : "none";
-  }
+function toggleForm() {
+  const loginForm = document.getElementById("login-form");
+  const registerForm = document.getElementById("register-form");
+  loginForm.style.display = loginForm.style.display === "none" ? "block" : "none";
+  registerForm.style.display = registerForm.style.display === "none" ? "block" : "none";
+}
 </script>
 
-<!-- Login API Integration -->
+<!-- Login API -->
 <script>
-  const loginForm = document.getElementById('loginForm');
-  const loginMessage = document.getElementById('loginMessage');
+const loginForm = document.getElementById('loginForm');
+const loginMessage = document.getElementById('loginMessage');
 
-  loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+loginForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
 
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
+  try {
+    const response = await fetch('http://localhost:5000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
 
-    try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
+    const data = await response.json();
 
-      const data = await response.json();
-
-      if (response.ok) {
-        loginMessage.className = "alert alert-success text-center mt-3";
-        loginMessage.textContent = data.message || "Login successful!";
-        localStorage.setItem("token", data.token);
-      } else {
-        loginMessage.className = "alert alert-danger text-center mt-3";
-        loginMessage.textContent = data.message || "Invalid credentials!";
-      }
-
-      loginMessage.classList.remove("d-none");
-    } catch (err) {
+    if (response.ok) {
+      loginMessage.className = "alert alert-success text-center mt-3";
+      loginMessage.textContent = data.message || "Login successful!";
+      localStorage.setItem("token", data.token);
+      setTimeout(() => { window.location.href = "./index.html"; }, 1500);
+    } else {
       loginMessage.className = "alert alert-danger text-center mt-3";
-      loginMessage.textContent = "Something went wrong. Try again.";
-      loginMessage.classList.remove("d-none");
+      loginMessage.textContent = data.message || "Invalid credentials!";
     }
-  });
+    loginMessage.classList.remove("d-none");
+  } catch (err) {
+    loginMessage.className = "alert alert-danger text-center mt-3";
+    loginMessage.textContent = "Something went wrong. Try again.";
+    loginMessage.classList.remove("d-none");
+  }
+});
 </script>
 
-<!-- Register API Integration -->
+<!-- Register API -->
 <script>
-  const registerForm = document.getElementById('registerForm');
+const registerForm = document.getElementById('registerForm');
+registerForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-  registerForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  const name = registerForm.querySelector('[name="name"]').value.trim();
+  const email = registerForm.querySelector('[name="email"]').value.trim();
+  const password = registerForm.querySelector('[name="password"]').value.trim();
 
-    const name = registerForm.querySelector('[name="name"]').value.trim();
-    const email = registerForm.querySelector('[name="email"]').value.trim();
-    const password = registerForm.querySelector('[name="password"]').value.trim();
+  try {
+    const response = await fetch('http://localhost:5000/api/auth/register', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ name, email, password })
+    });
 
-    try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name, email, password })
-      });
+    const data = await response.json();
 
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("Registration successful! Please login.");
-        toggleForm(); // switch to login
-        registerForm.reset();
-      } else {
-        alert(data.message || "Registration failed.");
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Something went wrong. Try again later.");
+    if (response.ok) {
+      alert("Registration successful! Please login.");
+      toggleForm();
+      registerForm.reset();
+    } else {
+      alert(data.message || "Registration failed.");
     }
-  });
+  } catch (err) {
+    alert("Something went wrong. Try again later.");
+  }
+});
+</script>
+
+<!-- Forgot Password API -->
+<script>
+const forgotForm = document.getElementById('forgotForm');
+const forgotMessage = document.getElementById('forgotMessage');
+
+forgotForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('forgotEmail').value.trim();
+
+  try {
+    const response = await fetch('http://localhost:5000/api/auth/forgot-password', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ email })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      forgotMessage.className = "alert alert-success text-center mt-3";
+      forgotMessage.textContent = data.message || "Reset link sent to your email!";
+      forgotMessage.classList.remove("d-none");
+      forgotForm.reset();
+    } else {
+      forgotMessage.className = "alert alert-danger text-center mt-3";
+      forgotMessage.textContent = data.message || "Email not found!";
+      forgotMessage.classList.remove("d-none");
+    }
+  } catch (err) {
+    forgotMessage.className = "alert alert-danger text-center mt-3";
+    forgotMessage.textContent = "Something went wrong.";
+    forgotMessage.classList.remove("d-none");
+  }
+});
 </script>
 
 </body>
