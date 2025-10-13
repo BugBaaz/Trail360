@@ -15,16 +15,12 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body, html {
       height: 100%;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #3a7bd5, #00d2ff);
+      background: linear-gradient(to right, #ad53ee, #06687e); /* Updated color */
       transition: background 0.5s ease, color 0.3s ease;
     }
 
@@ -71,21 +67,10 @@
       transition: background 0.5s ease;
     }
 
-    .left-side .content {
-      position: relative;
-      z-index: 2;
-      color: white;
-    }
+    .left-side .content { position: relative; z-index: 2; color: white; }
 
-    .left-side h1 {
-      font-size: 3rem;
-      font-weight: 600;
-    }
-
-    .left-side p {
-      font-size: 1.2rem;
-      margin-top: 15px;
-    }
+    .left-side h1 { font-size: 3rem; font-weight: 600; }
+    .left-side p { font-size: 1.2rem; margin-top: 15px; }
 
     .right-side {
       flex: 1;
@@ -108,46 +93,20 @@
       transition: background 0.5s ease, color 0.3s ease;
     }
 
-    .form-box h3 {
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
+    .form-box h3 { font-weight: 600; text-align: center; margin-bottom: 20px; }
     .form-control {
       background: rgba(255, 255, 255, 0.1);
       border: none;
       color: #fff;
     }
+    .form-control::placeholder { color: #ccc; }
 
-    .form-control::placeholder {
-      color: #ccc;
-    }
-
-    .toggle-link {
-      color: #ffc107;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-
-    .alert {
-      margin-top: 10px;
-      padding: 10px;
-      font-size: 14px;
-    }
+    .toggle-link { color: #ffc107; cursor: pointer; text-decoration: underline; }
 
     @media (max-width: 768px) {
-      .main {
-        flex-direction: column;
-      }
-      .left-side {
-        height: 40%;
-        padding: 30px;
-        text-align: center;
-      }
-      .right-side {
-        height: 60%;
-      }
+      .main { flex-direction: column; }
+      .left-side { height: 40%; padding: 30px; text-align: center; }
+      .right-side { height: 60%; }
     }
 
     .footer {
@@ -155,15 +114,8 @@
       color: #bbb;
       padding: 30px 0;
     }
-
-    .footer a {
-      color: #bbb;
-      text-decoration: none;
-    }
-
-    .footer a:hover {
-      color: #fff;
-    }
+    .footer a { color: #bbb; text-decoration: none; }
+    .footer a:hover { color: #fff; }
 
     /* ===== Dark Mode Styling ===== */
     body.dark-mode {
@@ -171,41 +123,15 @@
       color: #e0e0e0;
     }
 
-    body.dark-mode .navbar {
-      background-color: #1c1c1c !important;
-    }
+    body.dark-mode .navbar { background-color: #1c1c1c !important; }
+    body.dark-mode .footer { background-color: #1c1c1c; }
+    body.dark-mode .form-box { background-color: #1e1e1e; color: #f1f1f1; }
+    body.dark-mode .left-side { background: linear-gradient(to right, #5e2a9f, #04404f) !important; }
+    body.dark-mode .left-side::before { background: rgba(0, 0, 0, 0.7); }
+    body.dark-mode .toggle-link { color: #ffcc00; }
 
-    body.dark-mode .footer {
-      background-color: #1c1c1c;
-    }
-
-    body.dark-mode .form-box {
-      background-color: #1e1e1e;
-      color: #f1f1f1;
-    }
-
-    body.dark-mode .left-side {
-      background: linear-gradient(to right, #141E30, #243B55) !important;
-    }
-
-    body.dark-mode .left-side::before {
-      background: rgba(0, 0, 0, 0.7);
-    }
-
-    body.dark-mode .toggle-link {
-      color: #ffcc00;
-    }
-
-    .theme-toggle {
-      cursor: pointer;
-      font-size: 1.3rem;
-      color: #fff;
-      transition: color 0.3s;
-    }
-
-    .theme-toggle:hover {
-      color: #ffc107;
-    }
+    .theme-toggle { cursor: pointer; font-size: 1.3rem; color: #fff; transition: color 0.3s; }
+    .theme-toggle:hover { color: #ffc107; }
   </style>
 </head>
 <body>
@@ -331,7 +257,6 @@ toggleBtn.addEventListener('click', () => {
   toggleBtn.classList.toggle('fa-moon');
   toggleBtn.classList.toggle('fa-sun');
   
-  // Save preference
   if (document.body.classList.contains('dark-mode')) {
     localStorage.setItem('theme', 'dark');
   } else {
