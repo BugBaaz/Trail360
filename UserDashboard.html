@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Dashboard - Education360</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet"/>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ad53ee, #06687e);
+      color: #fff;
+      transition: background 0.5s, color 0.5s;
+    }
+
+    /* Navbar */
+    .navbar-brand { font-weight: 600; color: #ffc107 !important; }
+    .navbar-nav .nav-link { color: #fff !important; }
+    .theme-toggle { cursor: pointer; font-size: 1.3rem; color: #fff; }
+    .theme-toggle:hover { color: #ffc107; }
+
+    /* Dashboard Layout */
+    .dashboard-container { display: flex; flex-wrap: wrap; gap: 20px; padding: 40px 20px; align-items: flex-start; }
+
+    /* Sidebar/Profile Card */
+    .profile-card {
+      background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; text-align: center;
+      flex: 1 1 250px; min-width: 250px; position: sticky; top: 20px; height: fit-content;
+    }
+    .profile-card img { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px; }
+    .profile-card h4 { margin-bottom: 5px; }
+    .profile-card p { font-size: 0.9rem; color: #ffc107; }
+
+    /* Books Section */
+    .books-section { flex: 3 1 600px; }
+    .book-card {
+      background: rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; text-align: center;
+      margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.3s;
+    }
+    .book-card:hover { transform: translateY(-5px); }
+    .book-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; }
+    .book-card h5 { margin-bottom: 10px; }
+    .book-card button { margin: 3px; }
+
+    /* Dark Mode */
+    body.dark-mode { background: #121212; color: #e0e0e0; }
+    body.dark-mode .navbar { background-color: #1c1c1c !important; }
+    body.dark-mode .profile-card, body.dark-mode .book-card { background-color: #1e1e1e; color: #f1f1f1; }
+    body.dark-mode .btn-warning { background-color: #ffc107; color: #000; border: none; }
+
+    /* Footer */
+    .footer { background-color: #212529; color: #bbb; padding: 20px 0; text-align: center; margin-top: 40px; }
+    .footer a { color: #bbb; text-decoration: none; }
+    .footer a:hover { color: #fff; }
+
+    @media(max-width: 768px){ .dashboard-container { flex-direction: column; } }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+  <div class="container">
+    <a class="navbar-brand" href="#">Education360</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navmenu">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="./books.html">Books</a></li>
+        <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="./login.html">Login</a></li>
+        <li class="nav-item ms-3"><i class="fas fa-moon theme-toggle" id="darkToggle"></i></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Dashboard Container -->
+<div class="dashboard-container">
+
+  <!-- Sidebar/Profile -->
+  <div class="profile-card">
+    <img src="./images.jpg/arpit.jpg" alt="User Profile">
+    <h4>Arpit Ranjan</h4>
+    <p>arpit@example.com</p>
+  </div>
+
+  <!-- Downloaded Books Section -->
+  <div class="books-section mb-4">
+    <h3 class="mb-3">Downloaded Books</h3>
+    <div class="row g-3" id="downloadedBooks">
+      <p id="noDownloaded" class="text-warning">No books downloaded yet.</p>
+    </div>
+  </div>
+
+  <!-- Your Library Section -->
+  <div class="books-section">
+    <h3 class="mb-4">Your Library</h3>
+    <div class="row g-3">
+
+      <!-- Book Cards -->
+      <div class="col-md-4">
+        <div class="book-card">
+          <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=400&q=80" alt="Learn JavaScript">
+          <h5>Learn JavaScript</h5>
+          <button class="btn btn-success btn-sm" onclick="openReader('JavaScript')"><i class="fas fa-book-open"></i> Read</button>
+          <button class="btn btn-warning btn-sm download-btn"><i class="fas fa-download"></i> Download</button>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="book-card">
+          <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=400&q=80" alt="HTML & CSS Mastery">
+          <h5>HTML & CSS Mastery</h5>
+          <button class="btn btn-success btn-sm" onclick="openReader('HTML & CSS')"><i class="fas fa-book-open"></i> Read</button>
+          <button class="btn btn-warning btn-sm download-btn"><i class="fas fa-download"></i> Download</button>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="book-card">
+          <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80" alt="Python Programming">
+          <h5>Python Programming</h5>
+          <button class="btn btn-success btn-sm" onclick="openReader('Python')"><i class="fas fa-book-open"></i> Read</button>
+          <button class="btn btn-warning btn-sm download-btn"><i class="fas fa-download"></i> Download</button>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="book-card">
+          <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=400&q=80" alt="Data Structures">
+          <h5>Data Structures</h5>
+          <button class="btn btn-success btn-sm" onclick="openReader('Data Structures')"><i class="fas fa-book-open"></i> Read</button>
+          <button class="btn btn-warning btn-sm download-btn"><i class="fas fa-download"></i> Download</button>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="book-card">
+          <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=400&q=80" alt="Learn JavaScript">
+          <h5>Learn JavaScript</h5>
+          <button class="btn btn-success btn-sm" onclick="openReader('JavaScript')"><i class="fas fa-book-open"></i> Read</button>
+          <button class="btn btn-warning btn-sm download-btn"><i class="fas fa-download"></i> Download</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer text-center">
+  <div class="container">
+    <p>&copy; 2025 Education360. All rights reserved.</p>
+    <p><a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Scripts -->
+<script>
+const toggleBtn = document.getElementById('darkToggle');
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  toggleBtn.classList.toggle('fa-moon');
+  toggleBtn.classList.toggle('fa-sun');
+});
+
+function openReader(bookName){
+  alert("Opening " + bookName + " in in-site reader (modal)...");
+}
+
+// Download & Remove logic
+document.querySelectorAll('.download-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const bookCard = btn.closest('.book-card');
+    const bookName = bookCard.querySelector('h5').innerText;
+    const bookImg = bookCard.querySelector('img').src;
+
+    const downloadedSection = document.getElementById('downloadedBooks');
+    const noDownloaded = document.getElementById('noDownloaded');
+    if(noDownloaded) noDownloaded.remove();
+
+    const colDiv = document.createElement('div');
+    colDiv.className = 'col-md-4';
+    colDiv.innerHTML = `
+      <div class="book-card">
+        <img src="${bookImg}" alt="${bookName}">
+        <h5>${bookName}</h5>
+        <button class="btn btn-danger btn-sm remove-btn"><i class="fas fa-trash"></i> Remove</button>
+      </div>
+    `;
+    downloadedSection.appendChild(colDiv);
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-check"></i> Downloaded';
+    btn.classList.remove('btn-warning');
+    btn.classList.add('btn-secondary');
+
+    colDiv.querySelector('.remove-btn').addEventListener('click', () => {
+      colDiv.remove();
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-download"></i> Download';
+      btn.classList.remove('btn-secondary');
+      btn.classList.add('btn-warning');
+
+      if(downloadedSection.children.length === 0){
+        const p = document.createElement('p');
+        p.id = 'noDownloaded';
+        p.className = 'text-warning';
+        p.innerText = 'No books downloaded yet.';
+        downloadedSection.appendChild(p);
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
