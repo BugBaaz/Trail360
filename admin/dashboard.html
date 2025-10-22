@@ -63,7 +63,7 @@
     <div class="row">
       <div class="col-md-2 sidebar">
         <h3>Dashboard</h3>
-        <a href="#" id="manageBooks"><i class="fas fa-book me-2"></i>Manage Books</a>
+        <a href="#" id="manageBooks"><i class="fas fa-book me-2"></i>Upload Books</a>
       </div>
 
       <div class="col-md-10 main-content">
@@ -112,6 +112,10 @@
   <p id="responseMsg" class="mt-3"></p>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="../env.js"></script>
+<script src="./uploadBooks.js"></script>
+
   <script>
     document.getElementById("manageBooks").addEventListener("click", (e) => {
       e.preventDefault();
@@ -120,38 +124,6 @@
     });
 
     // Handle Form Submit with Validation
-    document.getElementById("uploadForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const msg = document.getElementById("responseMsg");
-      const form = e.target;
-
-      // Validation check
-      const title = form.title.value.trim();
-      const author = form.author.value.trim();
-      const genre = form.genre.value.trim();
-      const thumbnail = form.thumbnail.files[0];
-      const bookFile = form.bookFile.files[0];
-
-      if (!title || !author || !genre || !thumbnail || !bookFile) {
-        msg.innerHTML = `<span class='text-danger'><i class="fas fa-exclamation-circle"></i> All fields are mandatory!</span>`;
-        return;
-      }
-
-      const formData = new FormData(form);
-
-      const res = await fetch("http://localhost:5000/api/books/upload", {
-        method: "POST",
-        body: formData
-      });
-
-      const data = await res.json();
-
-      msg.innerHTML = res.ok
-        ? `<span class='text-success'><i class="fas fa-check-circle"></i> ${data.message}</span>`
-        : `<span class='text-danger'><i class="fas fa-times-circle"></i> ${data.message}</span>`;
-
-      if (res.ok) form.reset();
-    });
-  </script>
+   </script>
 </body>
 </html>
