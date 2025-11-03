@@ -1,14 +1,695 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Education360</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="./images.jpg/logo.jpg">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- FontAwesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      font-size: 1.6rem;
+      color: #ffc107 !important;
+    }
+
+    .navbar-nav .nav-link {
+      font-weight: 500;
+      color: #fff !important;
+    }
+
+    .hero {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1603570419887-773b181f19b0?auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .hero .overlay h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #ffc107;
+      word-break: break-word;
+    }
+
+    @media (min-width: 768px) {
+      .hero .overlay h1 {
+        font-size: 3.5rem;
+      }
+    }
+
+    .hero .overlay p {
+      font-size: 1.25rem;
+      margin-bottom: 30px;
+      color: #eee;
+    }
+
+    .btn {
+      white-space: nowrap;
+      transition: transform 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-primary {
+      background-color: #ffc107;
+      border: none;
+      color: #000;
+      font-weight: 600;
+    }
+
+    .btn-outline-light {
+      font-weight: 600;
+    }
+
+    .features i {
+      font-size: 2.8rem;
+      color: #0d6efd;
+      margin-bottom: 15px;
+      transition: transform 0.3s;
+    }
+
+    .features i:hover {
+      transform: scale(1.2);
+    }
+
+    .features h5 {
+      font-weight: 600;
+    }
+
+    .book-card img {
+      height: 240px;
+      object-fit: cover;
+      border-radius: 6px 6px 0 0;
+    }
+
+    .card {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-title {
+      font-weight: 600;
+    }
+
+    .footer {
+      background-color: #212529;
+      color: #bbb;
+      padding: 30px 0;
+    }
+
+    .footer a {
+      color: #bbb;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #fff;
+    }
+
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .navbar {
+      background-color: #1c1c1c !important;
+    }
+
+    body.dark-mode .footer {
+      background-color: #1c1c1c;
+    }
+
+    body.dark-mode .card {
+      background-color: #1e1e1e;
+      color: #f1f1f1;
+    }
+
+    body.dark-mode .btn-primary {
+      background-color: #ffc107;
+      color: #000;
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: #fff;
+    }
+
+    .theme-toggle:hover {
+      color: #ffc107;
+    }
+
+    @media (max-width: 576px) {
+      .hero .overlay .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+
+    .section-trending-books {
+      background-color: #ffffff;
+      color: #000000;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .dark-mode .section-trending-books {
+      background-color: #1c1c1c;
+      color: #ffffff;
+    }
+
+    .dark-mode .section-trending-books .trending-card {
+      background-color: #2a2a2a;
+      color: #ffffff;
+    }
+
+    .section-author-month {
+      background-color: #ffffff;
+      color: #000000;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .dark-mode .section-author-month {
+      background-color: #1c1c1c;
+      color: #ffffff;
+    }
+
+    .dark-mode .section-author-month .blockquote {
+      color: #cccccc;
+    }
+
+    .section-upcoming-webinar {
+      background-color: #ffffff;
+      color: #000000;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .dark-mode .section-upcoming-webinar {
+      background-color: #1c1c1c;
+      color: #ffffff;
+    }
+
+    .dark-mode .section-upcoming-webinar p,
+    .dark-mode .section-upcoming-webinar li {
+      color: #dddddd;
+    }
+
+    #author-of-month {
+      border-top: 1px solid #ddd;
+    }
+    .dark-mode #author-of-month {
+      border-top: 1px solid #444;
+    }
+
+    #upcoming-webinar {
+      border-top: 1px solid #ddd;
+    }
+    .dark-mode #upcoming-webinar {
+      border-top: 1px solid #444;
+    }
+
+    /* Theme switch support */
+    .section-theme {
+      background-color: #fff;
+      color: #000;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .dark-mode .section-theme {
+      background-color: #121212;
+      color: #f8f9fa;
+    }
+
+    .section-separator {
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      margin: 3rem auto;
+      width: 90%;
+    }
+
+    .dark-mode .section-separator {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .section-divider {
+      height: 1px;
+      width: 90%;
+      margin: 4rem auto;
+      background-color: rgba(0, 0, 0, 0.08);
+      transition: background-color 0.3s ease;
+    }
+
+    body.dark-mode .section-divider {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .section-divider {
+      height: 1px;
+      width: 90%;
+      margin: 4rem auto;
+      background-color: rgba(255, 255, 255, 0.08);
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    body:not(.dark-mode) .section-divider {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    /* Reusable toggle-aware section styling */
+    .section-theme {
+      background-color: #ffffff;
+      color: #000000;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .section-theme {
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    /* Section background + text (toggle-aware) */
+    .section-theme {
+      background-color: #ffffff;
+      color: #000000;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .section-theme {
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    /* Input fields for contact form */
+    .input-theme {
+      background-color: #ffffff;
+      color: #000000;
+      border: 1px solid #ccc;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .input-theme {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      border-color: #444;
+    }
+
+    /* Custom dark background (matches hero section) */
+    .bg-custom-dark {
+      background-color: #444;
+    }
+
+    body.dark-mode .bg-custom-dark {
+      background-color: #000;
+    }
+
+    /* Input fields that match both light/dark modes */
+    .input-theme {
+      background-color: #ffffff;
+      color: #000000;
+      border: 1px solid #ccc;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .input-theme {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      border-color: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand" href="./index.html">
+      <img src="./public/logo360.jpeg" alt="Education360 Logo" width="40" height="40">
+    </a>
+    <a class="navbar-brand" href="#">Education360</a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse" id="navmenu">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="./src/pages/books.html">Books</a></li>
+        <li class="nav-item"><a class="nav-link" href="./src/pages/about.html">About</a></li>
+
+        <!-- Login / Sign Up button -->
+        <li class="nav-item ms-2" id="login">
+          <a class="btn btn-light text-dark fw-medium" href="./src/pages/login.html">Login / Sign Up</a>
+        </li>
+
+        <!-- User Dropdown -->
+        <li class="nav-item dropdown ms-3" id="dropdown" style="display: none;">
+          <a class="btn btn-light text-dark fw-medium dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" href="./src/pages/UserDashboard.html">Dashboard</a></li>
+            <li><a class="dropdown-item" href="#" id="logoutBtn">Logout</a></li>
+          </ul>
+        </li>
+
+        <!-- Theme Toggle -->
+        <li class="nav-item ms-3">
+          <i class="fas fa-moon theme-toggle" id="darkToggle"></i>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Optional: Logout JS -->
+
+
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay">
+      <div class="container text-center">
+        <h1>Welcome to Education360</h1>
+        <p>Read Anytime, Anywhere – Digital Learning Made Easy</p>
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center mt-4">
+          <a href="./src/pages/books.html" class="btn btn-warning btn-lg px-4 py-2 fw-bold shadow-sm">Explore Library</a>
+          <a href="./src/pages/login.html" class="btn btn-outline-light btn-lg px-4 py-2 fw-bold shadow-sm">Register Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features py-5 text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <i class="fas fa-book-open"></i>
+          <h5 class="mt-2">Thousands of Books</h5>
+        </div>
+        <div class="col-md-3">
+          <i class="fas fa-download"></i>
+          <h5 class="mt-2">Easy Download</h5>
+        </div>
+        <div class="col-md-3">
+          <i class="fas fa-user-shield"></i>
+          <h5 class="mt-2">Secure Access</h5>
+        </div>
+        <div class="col-md-3">
+          <i class="fas fa-mobile-alt"></i>
+          <h5 class="mt-2">Mobile Friendly</h5>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5 section-trending-books" id="trending-books">
+    <div class="container">
+      <h2 class="text-center mb-4">
+        <i class="bi bi-fire text-warning"></i> Trending Books
+      </h2>
+      <div class="row">
+        <!-- Book Card 1 -->
+        <div class="col-md-4 mb-4">
+          <div class="card trending-card h-100 shadow-sm">
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794" class="card-img-top" alt="Book">
+            <div class="card-body">
+              <h5 class="card-title">Atomic Habits</h5>
+              <p class="card-text">By James Clear</p>
+              <a href="#" class="btn btn-warning text-dark">Read Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Book Card 2 -->
+        <div class="col-md-4 mb-4">
+          <div class="card trending-card h-100 shadow-sm">
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794" class="card-img-top" alt="Book">
+            <div class="card-body">
+              <h5 class="card-title">Deep Work</h5>
+              <p class="card-text">By Cal Newport</p>
+              <a href="#" class="btn btn-warning text-dark">Read Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Book Card 3 -->
+        <div class="col-md-4 mb-4">
+          <div class="card trending-card h-100 shadow-sm">
+            <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d" class="card-img-top" alt="Book">
+            <div class="card-body">
+              <h5 class="card-title">The Subtle Art...</h5>
+              <p class="card-text">By Mark Manson</p>
+              <a href="#" class="btn btn-warning text-dark">Read Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Between Author/Webinar or Webinar/Testimonials -->
+  <div class="section-separator my-5"></div>
+
+  <section class="py-5 section-author-month" id="author-of-month">
+    <div class="container">
+      <h2 class="text-center mb-4">
+        <i class="bi bi-person-circle text-warning"></i> Author of the Month
+      </h2>
+      <div class="row align-items-center">
+        <div class="col-md-4 text-center mb-4 mb-md-0">
+          <img src="https://images.unsplash.com/photo-1603415526960-f7e0328d4f89"
+               class="img-fluid rounded-circle shadow"
+               alt="Author"
+               style="width: 200px; height: 200px; object-fit: cover;">
+        </div>
+        <div class="col-md-8">
+          <h4 class="text-warning">Dr. Maya Bennett</h4>
+          <p class="mb-3">Author of <em>"Mindful Learning"</em> and a pioneer in neuroscience-based education. Her work bridges science and learning techniques to help students thrive in digital learning environments.</p>
+          <blockquote class="blockquote">
+            <p class="mb-0 fst-italic">"Education is not about filling a bucket, but lighting a fire."</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Between Author/Webinar or Webinar/Testimonials -->
+  <div class="section-separator my-5"></div>
+
+  <section class="py-5 section-upcoming-webinar" id="upcoming-webinar">
+    <div class="container">
+      <h2 class="text-center mb-5">
+        <i class="fas fa-video text-warning"></i> Upcoming Webinar
+      </h2>
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <img src="https://img.freepik.com/free-vector/webinar-concept-illustration_114360-4764.jpg" class="img-fluid rounded shadow" alt="Webinar">
+        </div>
+        <div class="col-md-6">
+          <h4 class="text-warning">"Digital Learning Strategies for 2025"</h4>
+          <p class="mb-3">Join us for a live session with top educators and digital experts as they share insights, tools, and strategies for better online learning in 2025 and beyond.</p>
+          <ul class="list-unstyled">
+            <li><strong>Date:</strong> August 10, 2025</li>
+            <li><strong>Time:</strong> 6:00 PM IST</li>
+            <li><strong>Speaker:</strong> Prof. Arvind Malhotra</li>
+          </ul>
+          <a href="#" class="btn btn-warning fw-semibold mt-3">Register Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Between Author/Webinar or Webinar/Testimonials -->
+  <div class="section-separator my-5"></div>
+
+  <section class="py-5 section-theme" id="testimonials">
+    <div class="container">
+      <h2 class="text-center mb-5">
+        <i class="fas fa-quote-left text-warning"></i> What Our Users Say
+      </h2>
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner text-center">
+          <div class="carousel-item active">
+            <blockquote class="blockquote">
+              <p class="mb-4 fst-italic">"Education360 changed the way I study. I can access any book I need anytime!"</p>
+              <footer class="blockquote-footer text-warning">Riya Sharma, B.Tech Student</footer>
+            </blockquote>
+          </div>
+          <div class="carousel-item">
+            <blockquote class="blockquote">
+              <p class="mb-4 fst-italic">"The UI is simple yet beautiful. I love reading on this platform!"</p>
+              <footer class="blockquote-footer text-warning">Ankur Jain, Competitive Exam Aspirant</footer>
+            </blockquote>
+          </div>
+          <div class="carousel-item">
+            <blockquote class="blockquote">
+              <p class="mb-4 fst-italic">"This is the future of digital libraries. Smooth, fast, and loaded with features."</p>
+              <footer class="blockquote-footer text-warning">Priya Mehta, University Professor</footer>
+            </blockquote>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bg-warning rounded-circle" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon bg-warning rounded-circle" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Between Author/Webinar or Webinar/Testimonials -->
+  <div class="section-separator my-5"></div>
+
+  <section class="py-5 section-theme" id="site-stats">
+    <div class="container">
+      <h2 class="text-center mb-5 text-warning">
+        <i class="fas fa-chart-bar"></i> Our Impact
+      </h2>
+      <div class="row text-center">
+        <div class="col-6 col-md-3 mb-4">
+          <i class="fas fa-book fa-3x text-warning mb-2"></i>
+          <h4 class="fw-bold">10,000+</h4>
+          <p class="mb-0">Books Available</p>
+        </div>
+        <div class="col-6 col-md-3 mb-4">
+          <i class="fas fa-users fa-3x text-warning mb-2"></i>
+          <h4 class="fw-bold">5,000+</h4>
+          <p class="mb-0">Active Users</p>
+        </div>
+        <div class="col-6 col-md-3 mb-4">
+          <i class="fas fa-cloud-download-alt fa-3x text-warning mb-2"></i>
+          <h4 class="fw-bold">20,000+</h4>
+          <p class="mb-0">Downloads</p>
+        </div>
+        <div class="col-6 col-md-3 mb-4">
+          <i class="fas fa-university fa-3x text-warning mb-2"></i>
+          <h4 class="fw-bold">100+</h4>
+          <p class="mb-0">Partner Institutions</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Between Author/Webinar or Webinar/Testimonials -->
+  <div class="section-separator my-5"></div>
+
+  <section class="py-5 bg-custom-dark text-light" id="contact">
+    <div class="container">
+      <h2 class="text-center text-warning mb-4"><i class="fas fa-envelope"></i> Contact Us</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <form>
+            <div class="mb-3">
+              <label for="name" class="form-label">Your Name</label>
+              <input type="text" class="form-control input-theme" id="name" placeholder="Enter your name" />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Your Email</label>
+              <input type="email" class="form-control input-theme" id="email" placeholder="Enter your email" />
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control input-theme" id="message" rows="4" placeholder="Your message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning fw-bold px-4">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer text-center section-theme border-top py-4">
+    <div class="container">
+      <p class="mb-1">&copy; 2025 <span class="text-warning">Education360</span>. All rights reserved.</p>
+      <p class="mb-0">
+        <a href="#" class="text-muted text-decoration-none me-2">Privacy Policy</a> |
+        <a href="#" class="text-muted text-decoration-none ms-2">Terms of Use</a>
+      </p>
+      <div class="mt-2">
+        <a href="#" class="text-muted me-3"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-muted me-3"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-muted me-3"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="text-muted"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./src/scripts/nav.js"></script>
+  <script src="./src/scripts/env.js"></script>
+
+
+  <!-- Dark Mode Toggle Script -->
+  <script>
+    const toggleBtn = document.getElementById('darkToggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      toggleBtn.classList.toggle('fa-moon');
+      toggleBtn.classList.toggle('fa-sun');
+    });
+  </script>
+</body>
 </html>

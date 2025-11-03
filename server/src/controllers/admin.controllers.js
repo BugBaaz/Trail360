@@ -8,7 +8,8 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 export const adminControllers = {
   addBook : asyncHandler(async (req, res) => {
-    const { title, author, publishedDate, genre, summary } = req.body;
+    const { title, author, genre, summary } = req.body;
+    const publishedDate = Date.now()
     const thumbnail = req.files?.thumbnail?.[0]?.path || null;
     const book = req.files?.book?.[0]?.path || null;
 
