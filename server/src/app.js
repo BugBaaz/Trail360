@@ -7,7 +7,7 @@ import bookRouter from "./routes/books.routes.js"
 const app = express()
 
 app.use(cors({
-    origin : "http://127.0.0.1:5501",
+    origin : "https://elibrary-9x2a.onrender.com",
     credentials : true
 }))
 app.use(express.json())
